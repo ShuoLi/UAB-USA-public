@@ -1,0 +1,22 @@
+<style>
+body{
+	background:none;
+}
+</style>
+
+<table class="table  table-hover">
+  <tr>
+    <th><%=  "name" %></th>
+    <th><%=  "contact" %></th>
+    <th><%=  "phone" %></th>
+    <th><%=  "address" %></th>
+  </tr>
+  <% for warehouse in @warehouses %>
+      <tr>
+        <td><%= warehouse.name %></td>
+        <td><%= warehouse.contact %></td>
+        <td><%= warehouse.phone%></td>
+        <td><%= warehouse.street%>+<%= warehouse.city%></td>
+      </tr>
+  <% end %>
+</table>

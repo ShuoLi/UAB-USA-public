@@ -1,0 +1,56 @@
+<style>
+body{
+	background:none;
+}
+  .pretty th .current {
+    padding-right: 12px;
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+
+  .pretty th .asc {
+    background-image: url(<%=asset_path "up_arrow.gif"%>);
+  }
+
+  .pretty th .desc {
+    background-image: url(<%=asset_path "down_arrow.gif"%>);
+  }
+</style>
+<div class='row'>
+  <div class="span4 right">
+ <%= form_tag user_path, :method => 'get' do %>
+ <%= text_field_tag :search_text, params[:search_text],:placeholder=>"Search",:style=>"height:12px"%>
+ <button type="submit" class="button right" >Search</button> 
+ <% end %>
+</div>
+</div>
+<%= paginate @orders, :window => 1 %>
+
+<table class="table  table-hover pretty">
+  <tr>
+    <th><%= sortable "id"%></th>
+    <th style="text-transform:uppercase;"><%="YMMV".upcase %></th>
+    <th><%= sortable "color" %></th>
+    <th style="text-transform:uppercase;"><%= sortable "vin" %></th>
+    <th style="text-transform:uppercase;"><%= sortable "msrp" %></th>
+    <th><%= sortable "premium" %></th>
+    <th><%= sortable "status_id" %></th> 
+    <th>Invoice</th>
+    <th>Attachments</th>
+  </tr>
+  <% for order in @orders %>
+  <tr>
+    <td><%= order.id%></td>
+    <td><%= order.year+" "+Manufactory.find(order.model.manufactory_id).name+" "+order.model.name+"-"+order.vin.last(6)%></td>
+    <td><%= order.color %></td>
+    <td><%= order.vin %></td>
+    <td ><%= number_to_currency(order.msrp) %></td>
+    <td><%= number_to_currency(order.premium) %></td>
+    <td class="hoverClass" title="<%= order.detail %>"><%= order.status.name %></td>
+<!--         <td class="price"><%= number_to_currency(order.paid) %></td>
+-->     
+<td><%= link_to "Invoice", order_path(:id=>order.id, format: "pdf") %></td>
+<td><%= link_to "Attachments", order_path(:id=>order.id) %></td>
+</tr>
+<% end %>
+</table>

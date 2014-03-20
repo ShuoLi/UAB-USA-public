@@ -1,0 +1,37 @@
+<style>
+body{
+	background:none;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src='/assets/jquery.ui.widget.js'></script>
+<script src='/assets/jquery.iframe-transport.js'></script>
+<script src='/assets/jquery.fileupload'></script>
+<h1>Images</h1>
+
+<%= @order.images.each do|im| %>
+	<%= im.image%>
+<% end%>
+<div id="paintings">
+  <%= render @paintings%>
+</div>
+
+<div class="clear"></div>
+<script>
+	// console.log(<%=@order.id%>);
+	order_id = <%=@order.id%>;
+</script>
+<%= s3_uploader_form  post: image_url,as: "image[image]" do %>
+  <%= file_field_tag :file, multiple: true%>
+<% end %>
+
+
+<script src='/assets/tmpl.js'></script>
+
+<script id="template-upload" type="text/x-tmpl"/>
+
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>

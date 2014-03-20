@@ -1,0 +1,21 @@
+<style>
+body{
+	background:none;
+}
+</style>
+
+<div class="row">
+<div class='span8'>
+<h3>Mailing Address</h3>
+<h5 style="margin-top:-30px"><%= simple_format h  @setting.mailAddress%></h5>
+  <br>
+<h3>Office Information</h3>
+  <h5 style="margin-top:-30px"><%= simple_format h @setting.contact%></h5>
+</div>
+  <div class="span4">
+    <h3>How can we server you?</h3>
+    <div style="margin-top:-30px"> <%=simple_format h  @setting.service%></div>
+
+  </div>
+
+</div>

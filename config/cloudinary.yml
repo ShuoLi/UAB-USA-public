@@ -1,0 +1,18 @@
+development:
+  cloud_name: hhctp94o4
+  api_key: '596299177457236'
+  api_secret: ENV["api_secret"]
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: hhctp94o4
+  api_key: '596299177457236'
+  api_secret: ENV["api_secret"]
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: hhctp94o4
+  api_key: '596299177457236'
+  api_secret: ENV["api_secret"]
+  enhance_image_tag: true
+  static_image_support: false

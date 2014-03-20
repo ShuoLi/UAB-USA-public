@@ -1,0 +1,17 @@
+<style>
+body{
+	background:none;
+}
+</style>
+
+<h1>Order #<%= @order.invoice_number %></h1>
+<div>
+	<%@images.each do |image| %>
+		 <%=link_to cl_image_tag(image.image, :width => 300, :height => 300, :crop => :fill), "/image?id="+image.id.to_s%>
+	<% end%>
+</div>
+<div>
+	<%@attachments.each do |attachment| %>
+	<h4><%=link_to attachment.name, attachment_path(:id=>attachment.id)%></h4>
+	<%end%>
+</div>
